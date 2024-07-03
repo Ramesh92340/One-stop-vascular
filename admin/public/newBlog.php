@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Ask-Oncologist - Dashboard</title>
+    <title>One-Stop-Vascular - Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -55,85 +55,84 @@
 
                     <!-- Content Row -->
                     <div class="row">
-                        <div class="col-xl-11 ">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-success">CREATE CONTENT</h6>
+    <div class="col-xl-11">
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-success">CREATE CONTENT</h6>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+                <form style='color:black;' id="addblogform" action="addBlog.php" method="POST" enctype="multipart/form-data">
 
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <form style='color:black;' id="addblogform" action="addBlog.php" method="POST" enctype="multipart/form-data">
-
-                                        <div class="mb-3">
-                                            <label for="formFileMultiple1" class="form-label text-primary my-2">CHOOSE TITTLE IMAGE</label>
-                                            <input class="form-control" name="photos[]" type="file" id="formFileMultiple" multiple>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label for="exampleFormControlInput1" class="form-label text-primary">ENTER
-                                                TITLE</label>
-                                            <input type="text" class="form-control text-grey-900" name='title' id="exampleFormControlInput1" placeholder="tittle" required>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label for="exampleFormControlInput1" class="form-label text-primary">ENTER
-                                                content</label>
-                                            <input type="text" class="form-control text-grey-900" name='content' id="exampleFormControlInput1" placeholder="content" required>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label for="formFileMultiple" class="form-label text-primary my-2">Choose
-                                                Photos
-                                                (you can choose multiple photos)</label>
-                                            <input class="form-control" name="photos[]" type="file" id="formFileMultiple" multiple>
-                                        </div>
-                                        <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
-
-                                        <!-- Create the editor container -->
-                                        <label for="exampleFormControlInput1" class="form-label text-primary">ENTER
-                                            CONTENT</label>
-                                        <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
-
-                                        <!-- Create the editor container -->
-                                        <div id="editor" style='height:200px;'>
-
-                                        </div>
-
-
-                                        <input name="content" id="formcontentdata" style="display: none"></input>
-
-                                        <!-- Include the Quill library -->
-                                        <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
-
-                                        <!-- Initialize Quill editor -->
-                                        <script>
-                                            const quill = new Quill('#editor', {
-                                                theme: 'snow'
-                                            });
-                                            document.querySelector('#addblogform').onsubmit = function() {
-                                                document.querySelector('#formcontentdata').value = quill.getSemanticHTML();
-                                            };
-                                        </script>
-                                       
-                                        <!-- <div class="mb-3">
-                                            <label for="formFileVideo" class="form-label text-primary">Choose
-                                                Video</label>
-                                            <input class="form-control" name="video" type="file" id="formFileVideo" required>
-
-                                        </div> -->
-                                        <div class='row p-3'>
-                                            <div class='col-xl-7 col-sm-2'></div>
-                                            <button type='reset' class='btn btn-danger mx-1 my-2 col-xl-2'>Clear</button>
-                                            <button type='submit' class='btn btn-success mx-1 my-2 col-xl-2'>Publish</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-
+                    <div class="mb-3">
+                        <label for="formFileTitleImage" class="form-label text-primary my-2">CHOOSE TITLE IMAGE</label>
+                        <input class="form-control" name="title_image" type="file" id="formFileTitleImage" required>
                     </div>
+
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label text-primary">ENTER TITLE</label>
+                        <input type="text" class="form-control text-grey-900" name='title' id="exampleFormControlInput1" placeholder="Title" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput2" class="form-label text-primary">ENTER MAIN CONTENT</label>
+                        <textarea class="form-control" name="main_content" id="exampleFormControlInput2" placeholder="Main content" required></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput3" class="form-label text-primary">ENTER FULL CONTENT</label>
+                        <div id="editor" style="height: 400px;"></div>
+                        <input name="full_content" id="formcontentdata" style="display: none">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="formFileMainImage" class="form-label text-primary my-2">Choose Main Image</label>
+                        <input class="form-control" name="main_image" type="file" id="formFileMainImage" required>
+                    </div>
+
+                    <!-- Include the Quill library -->
+                    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
+                    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+
+                    <!-- Initialize Quill editor for full content -->
+                    <script>
+                        const quill = new Quill('#editor', {
+                            theme: 'snow',
+                            modules: {
+                                toolbar: [
+                                    [{ 'header': '1' }, { 'header': '2' }, { 'font': [] }],
+                                    [{ size: [] }],
+                                    ['bold', 'italic', 'underline', 'strike'],
+                                    ['link', 'blockquote', 'code-block'],
+                                    [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                                    [{ 'script': 'sub' }, { 'script': 'super' }],
+                                    [{ 'indent': '-1' }, { 'indent': '+1' }],
+                                    [{ 'direction': 'rtl' }],
+                                    [{ 'color': [] }, { 'background': [] }],
+                                    [{ 'align': [] }],
+                                    ['clean']
+                                ]
+                            },
+                            placeholder: 'Compose an epic...',
+                            theme: 'snow'
+                        });
+                        document.querySelector('#addblogform').onsubmit = function() {
+                            document.querySelector('#formcontentdata').value = quill.root.innerHTML;
+                        };
+                    </script>
+
+                    <div class='row p-3'>
+                        <div class='col-xl-7 col-sm-2'></div>
+                        <button type='reset' class='btn btn-danger mx-1 my-2 col-xl-2'>Clear</button>
+                        <button type='submit' class='btn btn-success mx-1 my-2 col-xl-2'>Publish</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
                     <!-- /.container-fluid -->
 
                 </div>
@@ -144,7 +143,7 @@
                     <div class="container my-auto">
                         <div class="copyright text-center my-auto">
                             <div class="footer-widget__copyright">
-                                <p class="mini_text" style="color:black"> ©2024 Ask-Oncologist . All Rights Reserved. Designed &
+                                <p class="mini_text" style="color:black"> ©2024 One-Stop-Vascular . All Rights Reserved. Designed &
                                     Developed by <a href="https://bhavicreations.com/" target="_blank" style="text-decoration: none;color:black">Bhavi
                                         Creations</a></p>
                             </div>
