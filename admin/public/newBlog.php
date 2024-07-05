@@ -81,15 +81,20 @@
                     </div>
 
                     <div class="mb-3">
+                        <label for="formFileMainImage" class="form-label text-primary my-2">Choose Main Image</label>
+                        <input class="form-control" name="main_image" type="file" id="formFileMainImage" required>
+                    </div>
+
+
+
+
+                    <div class="mb-3">
                         <label for="exampleFormControlInput3" class="form-label text-primary">ENTER FULL CONTENT</label>
                         <div id="editor" style="height: 400px;"></div>
                         <input name="full_content" id="formcontentdata" style="display: none">
                     </div>
 
-                    <div class="mb-3">
-                        <label for="formFileMainImage" class="form-label text-primary my-2">Choose Main Image</label>
-                        <input class="form-control" name="main_image" type="file" id="formFileMainImage" required>
-                    </div>
+                   
 
                     <!-- Include the Quill library -->
                     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />

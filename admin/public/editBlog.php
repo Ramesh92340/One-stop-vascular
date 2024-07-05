@@ -23,6 +23,7 @@ $conn->close();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -70,15 +71,20 @@ $conn->close();
                                             <input type="text" class="form-control text-grey-900" name='title' id="exampleFormControlInput1" value="<?php echo htmlspecialchars($title); ?>" placeholder="Title" required>
                                         </div>
                                         <!-- Main Content Input -->
+                                      
+
                                         <div class="mb-3">
                                             <label for="exampleFormControlInput1" class="form-label text-primary">ENTER MAIN CONTENT</label>
                                             <input type="text" class="form-control text-grey-900" name='main_content' id="exampleFormControlInput1" value="<?php echo htmlspecialchars($main_content); ?>" placeholder="Main content" required>
                                         </div>
-                                        <!-- Multiple Photos Upload -->
+
+                                        
                                         <div class="mb-3">
-                                            <label for="formFileMultiple" class="form-label text-primary my-2">Choose Photos (you can choose multiple photos)</label>
-                                            <input class="form-control" name="photos[]" type="file" id="formFileMultiple" multiple>
+                                            <label for="formFileMainImage" class="form-label text-primary my-2">Choose Main Image</label>
+                                            <input class="form-control" name="main_image" type="file" id="formFileMainImage" required>
                                         </div>
+
+
                                         <!-- Quill Editor for Full Content -->
                                         <label for="exampleFormControlInput1" class="form-label text-primary">ENTER FULL CONTENT</label>
                                         <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
@@ -124,4 +130,5 @@ $conn->close();
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
 </body>
+
 </html>

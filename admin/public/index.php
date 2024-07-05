@@ -81,13 +81,15 @@
                                     if ($result->num_rows > 0) {
                                         while ($row = $result->fetch_assoc()) {
                                             // Directly use the image path in the src attribute
-                                            $main_image = !empty($row['main_image']) ? $row['main_image'] : 'path_to_placeholder_image.jpg'; // Replace with your placeholder image path
+                                            $image_path = !empty($row['main_image']) ?  "../uploads/photos/{$row['main_image']}" : 'path_to_placeholder_image.jpg'; // Replace with your placeholder image path
 
                                             // Output the blog card
                                             echo "
                                         <div class='col-12 col-md-4 col-custom'>
                                             <div class='card card-custom'>
-                                                <img src='./uploads/photos/{$main_image}' class='card-img-top' alt='Content Image'>
+                                         
+                                                <img src='{$image_path}' class='card-img-top' alt='Blog Image'>
+
                                                 <div class='card-body'>
                                                     <h5 class='card-title' style='color:black;'>{$row['title']}</h5>
                                                     <p class='card-text'>" . substr(strip_tags($row['main_content']), 0, 100) . "...</p>

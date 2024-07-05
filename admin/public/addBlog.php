@@ -25,39 +25,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Handle file uploads for title image and main image
     $title_image_path = '';
     if (!empty($_FILES['title_image']['name'])) {
-        $title_image_directory = __DIR__ ."/../uploads/photos/";  // Adjust the upload directory path as necessary
+        $title_image_directory = __DIR__ . "/../uploads/photos/";  // Adjust the upload directory path as necessary
         $title_image_name = generateUniqueFileName($_FILES['title_image']['name']);
-        $title_image_path = $title_image_directory . $title_image_name;
-        if (!move_uploaded_file($_FILES['title_image']['tmp_name'], $title_image_path)) {
+        $title_image_path = $title_image_name;  // Store only the filename
+
+        if (!move_uploaded_file($_FILES['title_image']['tmp_name'], $title_image_directory . $title_image_name)) {
             die("Error uploading title image.");
         }
     }
 
     $main_image_path = '';
     if (!empty($_FILES['main_image']['name'])) {
-        $main_image_directory = __DIR__ ."/../uploads/photos/";  // Adjust the upload directory path as necessary
+        $main_image_directory = __DIR__ . "/../uploads/photos/";  // Adjust the upload directory path as necessary
         $main_image_name = generateUniqueFileName($_FILES['main_image']['name']);
-        $main_image_path = $main_image_directory . $main_image_name;
-        if (!move_uploaded_file($_FILES['main_image']['tmp_name'], $main_image_path)) {
+        $main_image_path = $main_image_name;  // Store only the filename
+
+        if (!move_uploaded_file($_FILES['main_image']['tmp_name'], $main_image_directory . $main_image_name)) {
             die("Error uploading main image.");
         }
     }
 
+    // Prepare SQL statement based on whether it's an insert or update
     if ($blog_id > 0) {
         // Update existing blog post
-        if (!empty($title_image_path) && !empty($main_image_path)) {
-            $stmt = $conn->prepare("UPDATE blogs SET title = ?, main_content = ?, full_content = ?, title_image = ?, main_image = ? WHERE id = ?");
-            $stmt->bind_param("sssssi", $title, $main_content, $full_content, $title_image_path, $main_image_path, $blog_id);
-        } elseif (!empty($title_image_path)) {
-            $stmt = $conn->prepare("UPDATE blogs SET title = ?, main_content = ?, full_content = ?, title_image = ? WHERE id = ?");
-            $stmt->bind_param("ssssi", $title, $main_content, $full_content, $title_image_path, $blog_id);
-        } elseif (!empty($main_image_path)) {
-            $stmt = $conn->prepare("UPDATE blogs SET title = ?, main_content = ?, full_content = ?, main_image = ? WHERE id = ?");
-            $stmt->bind_param("ssssi", $title, $main_content, $full_content, $main_image_path, $blog_id);
-        } else {
-            $stmt = $conn->prepare("UPDATE blogs SET title = ?, main_content = ?, full_content = ? WHERE id = ?");
-            $stmt->bind_param("sssi", $title, $main_content, $full_content, $blog_id);
-        }
+        $stmt = $conn->prepare("UPDATE blogs SET title = ?, main_content = ?, full_content = ?, title_image = ?, main_image = ? WHERE id = ?");
+        $stmt->bind_param("sssssi", $title, $main_content, $full_content, $title_image_path, $main_image_path, $blog_id);
     } else {
         // Insert new blog post
         $stmt = $conn->prepare("INSERT INTO blogs (title, main_content, full_content, title_image, main_image, created_at) VALUES (?, ?, ?, ?, ?, NOW())");
