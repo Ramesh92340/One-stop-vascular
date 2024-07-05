@@ -67,7 +67,7 @@
 
                     <div class="mb-3">
                         <label for="formFileTitleImage" class="form-label text-primary my-2">CHOOSE TITLE IMAGE</label>
-                        <input class="form-control" name="title_image" type="file" id="formFileTitleImage" required>
+                        <input class="form-control" name="title_image" type="file" id="formFileTitleImage"  >
                     </div>
 
                     <div class="mb-3">

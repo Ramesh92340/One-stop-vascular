@@ -70,38 +70,39 @@
                                     <h2 class="h2 mb-0 text-info mx-2">Recently Published Blogs</h2>
                                 </div>
                                 <div class='row row-custom no-gutters col-12'>
-    <?php
-    // Database connection (replace with your actual database connection details)
-    include '../../db.connection/db_connection.php';
+                                    <?php
+                                    // Database connection (replace with your actual database connection details)
+                                    include '../../db.connection/db_connection.php';
 
-    // Fetch blog data ordered by created_at in descending order
-    $sql = "SELECT id, title, main_content, full_content, title_image, main_image FROM blogs ORDER BY created_at DESC";
-    $result = $conn->query($sql);
+                                    // Fetch blog data ordered by created_at in descending order
+                                    $sql = "SELECT id, title, main_content, full_content, title_image, main_image FROM blogs ORDER BY created_at DESC";
+                                    $result = $conn->query($sql);
 
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            // Determine image paths
-            $main_image_path = isset($row['main_image']) ? './uploads/photos/' . $row['main_image'] : 'path_to_placeholder_image.jpg'; // Replace with your placeholder image path
+                                    if ($result->num_rows > 0) {
+                                        while ($row = $result->fetch_assoc()) {
+                                            // Directly use the image path in the src attribute
+                                            $main_image = !empty($row['main_image']) ? $row['main_image'] : 'path_to_placeholder_image.jpg'; // Replace with your placeholder image path
 
-            // Output the blog card
-            echo "
-            <div class='col-12 col-md-4 col-custom'>
-                <div class='card card-custom'>
-                    <img src='$main_image_path' class='card-img-top' alt='content Image'>
-                    <div class='card-body'>
-                        <h5 class='card-title' style='color:black;'>{$row['title']}</h5>
-                        <p class='card-text'>" . substr(strip_tags($row['main_content']), 0, 100) . "...</p>
-                    </div>
-                </div>
-            </div>";
-        }
-    } else {
-        echo "<p>No blog posts found.</p>";
-    }
+                                            // Output the blog card
+                                            echo "
+                                        <div class='col-12 col-md-4 col-custom'>
+                                            <div class='card card-custom'>
+                                                <img src='./uploads/photos/{$main_image}' class='card-img-top' alt='Content Image'>
+                                                <div class='card-body'>
+                                                    <h5 class='card-title' style='color:black;'>{$row['title']}</h5>
+                                                    <p class='card-text'>" . substr(strip_tags($row['main_content']), 0, 100) . "...</p>
+                                                </div>
+                                            </div>
+                                        </div>";
+                                        }
+                                    } else {
+                                        echo "<p>No blog posts found.</p>";
+                                    }
 
-    $conn->close();
-    ?>
-</div>
+                                    $conn->close();
+                                    ?>
+                                </div>
+
 
 
                             </div> <!-- Pie Chart -->

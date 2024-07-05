@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Handle file uploads for title image and main image
     $title_image_path = '';
     if (!empty($_FILES['title_image']['name'])) {
-        $title_image_directory = "uploads/photos/";  // Adjust the upload directory path as necessary
+        $title_image_directory = __DIR__ ."/../uploads/photos/";  // Adjust the upload directory path as necessary
         $title_image_name = generateUniqueFileName($_FILES['title_image']['name']);
         $title_image_path = $title_image_directory . $title_image_name;
         if (!move_uploaded_file($_FILES['title_image']['tmp_name'], $title_image_path)) {
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $main_image_path = '';
     if (!empty($_FILES['main_image']['name'])) {
-        $main_image_directory = "uploads/photos/";  // Adjust the upload directory path as necessary
+        $main_image_directory = __DIR__ ."/../uploads/photos/";  // Adjust the upload directory path as necessary
         $main_image_name = generateUniqueFileName($_FILES['main_image']['name']);
         $main_image_path = $main_image_directory . $main_image_name;
         if (!move_uploaded_file($_FILES['main_image']['tmp_name'], $main_image_path)) {
