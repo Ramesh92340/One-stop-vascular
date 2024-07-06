@@ -267,7 +267,7 @@ $result = $conn->query($sql);
                                     </div>";
                                 }
                             } else {
-                                echo "<p>No blog posts found.</p>";
+                                echo "<p>No blog posts found.</p>"; 
                             }
                             $conn->close();
                             ?>
