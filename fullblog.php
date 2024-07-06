@@ -293,7 +293,7 @@ $conn->close();
                           </figure>
                       </div>
                       <div class='col-7 background d-flex flex-column justify-content-center mb-3'>
-                          <a href='openblogs.php?id={$row['id']}'>
+                          <a href='fullblog.php?id={$row['id']}'>
                               <p class='blog-card-text'>{$title}</p>
                           </a>
                       </div>";
